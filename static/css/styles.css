@@ -1,0 +1,9 @@
+body{
+    background: #FEF2F2;
+}
+
+.bg{
+    background-image: url(../img/mati.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
