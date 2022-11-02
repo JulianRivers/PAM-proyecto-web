@@ -1,0 +1,58 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block body %}
+<div class="container w-75 bg-light mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+        </div>
+        <div class="col bg-white p-5 rounded-end">
+            <div class="card">
+                <div class="card-body">
+                    <span>{% block usuario %} {% endblock %}</span>
+                    <h2 class="text-center py-5">Ingrese tus datos para iniciar sesión</h2>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" name="email">
+                            </div>
+                            <div class="form-group">
+                                <div class="mb-4">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-grid">
+                                    <div class="row">
+                                        <div class="col col-lg-3">
+                                            <button type="submit" class="btn btn-lg  w-100 my-1">
+                                                <div>
+                                                    <img src="https://divisist2.ufps.edu.co/assets/img/google/google.png"
+                                                        alt="Google" width="32">
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="col col-lg-9">
+                                            <button type="submit" class="btn btn-lg w-100 my-1">Iniciar
+                                                sesión
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="my-3">
+                                    <a href="#">¿Olvidaste tu clave?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
