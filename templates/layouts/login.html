@@ -12,11 +12,15 @@
                 <div class="card-body">
                     <span>{% block usuario %} {% endblock %}</span>
                     <h2 class="text-center py-5">Ingrese tus datos para iniciar sesión</h2>
-                    <form action="#" method="POST">
+                    <form method="POST">{% csrf_token %}
                         <div class="form-group">
                             <div class="mb-4">
                                 <label for="email" class="form-label">Correo Electrónico</label>
                                 <input type="email" class="form-control" name="email">
+                            </div>
+                            <div class="mb-4">
+                                <label for="documento" class="form-label">Documento</label>
+                                <input type="text" class="form-control" name="documento">
                             </div>
                             <div class="form-group">
                                 <div class="mb-4">

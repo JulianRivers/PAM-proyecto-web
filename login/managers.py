@@ -2,7 +2,6 @@ from django.contrib.auth.base_user import BaseUserManager
 
 class AspiranteManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
-        print("hola")
         if not email:
             raise ValueError(('The Email must be set'))
         email = self.normalize_email(email)
