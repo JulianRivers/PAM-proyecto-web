@@ -1,19 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layouts/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://divisist2.ufps.edu.co/assets/css/fontawesome/css/font-awesome.min.css">
-    <title>Registrarse</title>
-</head>
+{% block body %}
 
-<body>
-    <form action="Registrarse">
-        {{form}}
-        <input type="submit" value="Registrarse">
-    </form>
-</body>
-
-</html>
+<div class="container w-75 bg-light mt-5 rounded shadow">
+    <div class="row align-items-stretch">
+        <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
+        <div class="col bg-white p-5 rounded-end">
+            <div class="card">
+                <div class="card-body">
+                    {% block usuario %} Aspirante {% endblock %}
+                    <h3 class="text py-2">Ingresa tus datos para Registrarte</h3>
+                    <form name="registro" method="POST" enctype="multipart/formdata">
+                        <div class="mb-2">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="mb-2">
+                            <label for="documento" class="form-label">Numero de documento</label>
+                            <input type="text" class="form-control" name="documento">
+                        </div>
+                        <div class="mb-2">
+                            <label for="nacionalidad">¿Es Egresad@ UFPS?</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="egresado">
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label for="nacionalidad">¿Es Colombian@?</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="nacionalidad">
+                            </div>
+                        </div>
+                        <!--<div class="mb-2">
+                            <label for="foto">Foto (tamaño 3x4):</label>    
+                            <input type="file" name="foto" id="foto" size="30">
+                        </div>-->
+                        <div class="mb-2">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="form-group">
+                            <div class="d-grid">
+                                <div class="row">
+                                    <div class="col col-lg-3">
+                                        <button type="button" class="btn btn-light btn-lg  w-100 my-1">
+                                            <div>
+                                                <img src="https://divisist2.ufps.edu.co/assets/img/google/google.png"
+                                                    alt="Google" height="30">
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="col col-lg-9">
+                                        <button type="button" class="btn btn-danger btn-lg w-100 my-1">Registrarte</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
