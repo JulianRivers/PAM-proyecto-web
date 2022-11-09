@@ -7,6 +7,10 @@
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 {% endblock %}
 
+{% block js-bootstrap %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+{% endblock %}
+
 {% block body %}
 <div class="container w-75 bg-light mt-5 rounded shadow">
     <div class="row align-items-stretch">
@@ -53,7 +57,7 @@
                                 <a href="#">¿Olvidaste tu clave?</a>
                             </div>
                             <div class="col col-lg-6">
-                                <button type="button" class="btn btn-light w-100">Regístrate</button>
+                                <a href="/registrar" class="btn btn-primary btn-light" role="button">Regístrate</a>
                             </div>
                         </div>
                     </form>
@@ -62,8 +66,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block js-bootstrap %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 {% endblock %}
