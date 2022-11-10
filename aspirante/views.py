@@ -2,5 +2,5 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def aspirante(request):
-    return render(request,'dashboard-aspirante.html')
+def inicio(request):
+    return render(request,'aspirante/dashboard_a.html')

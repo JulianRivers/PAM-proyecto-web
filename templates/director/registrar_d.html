@@ -17,10 +17,10 @@
         <div class="col bg-white p-5 rounded-end">
             <div class="card">
                 <div class="card-body">
-                    {% block usuario %} Aspirante {% endblock %}
+                    {% block usuario %} Director {% endblock %}
                     <h3 class="text py-2">Ingresa tus datos para Registrarte</h3>
                     <!-- POST  -->
-                    <form action="/registrarAspirante/" name="registro" method="POST" enctype="multipart/formdata" autocomplete="off">
+                    <form action="/guardar_d/" name="registro" method="POST" enctype="multipart/formdata" autocomplete="off">
                         {% csrf_token %}
                         {{form|crispy}}
                         <div class="form-group">
