@@ -7,6 +7,5 @@ urlpatterns = [
     path('director/', views.director),
     path('registrar_a/', views.registrar_a),
     path('guardar_a/', views.guardar_a),
-    path('registrar_d/', views.registrar_d),
-    path('guardar_d/', views.guardar_d),
+    path('ingresar_a/', views.ingresar_a)
 ]

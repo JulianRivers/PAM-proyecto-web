@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %} Login {% endblock %}
 
@@ -21,20 +22,7 @@
                     <span>{% block usuario %} {% endblock %}</span>
                     <h3 class="text py-3">Ingresa tus datos para Iniciar Sesión</h3>
                     <form method="POST">{% csrf_token %}
-                        <div class="form-group">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Usuario</label>
-                                <input type="email" class="form-control" name="email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="documento" class="form-label">Documento</label>
-                                <input type="text" class="form-control" name="documento">
-                            </div>
-                            <div class="mb-3 ">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" name="password">
-                            </div>
-                        </div>
+                        {{form|crispy}}
                         <div class="form-group">
                             <div class="d-grid">
                                 <div class="row">
@@ -47,7 +35,7 @@
                                         </button>
                                     </div>
                                     <div class="col col-lg-9">
-                                        <button type="button" class="btn btn-danger btn-lg w-100 my-1">Iniciar sesión</button>
+                                        <a href="{% block url-inicio %}{% endblock %}" class="btn btn-danger btn-lg w-100 my-1" role="button">Iniciar sesión</a>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +45,7 @@
                                 <a href="/">¿Olvidaste tu clave?</a>
                             </div>
                             <div class="col col-lg-6">
-                                <a href="{% block url-registro %} {%endblock%}" class="btn btn-primary btn-light" role="button">Regístrate</a>
+                                <a href="{% block url-registro %}{%endblock%}" class="btn btn-primary btn-light" role="button">Regístrate</a>
                             </div>
                         </div>
                     </form>

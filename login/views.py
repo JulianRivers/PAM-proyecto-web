@@ -8,18 +8,14 @@ from login.models import Aspirante
 
 # Create your views here.
 def index(request):
-    return render(request, 'aspirante/login_a.html')
+    form = LoginAspirante()
+    return render(request, 'aspirante/login_a.html', {'form':form})
 
 def director(request):
     return render(request, 'director/login_d.html')
 
-
 def registrar_a(request):
     return render(request, 'aspirante/registrar_a.html', {'form': RegistrarAspirante()})
-
-def registrar_d(request):
-    #muestra form de registro director
-    return render(request, 'aspirante/registrar_d.html', {'form': RegistrarDirector()})
 
 def guardar_a(request):
     #Registra Aspirantes
@@ -45,8 +41,13 @@ def guardar_a(request):
     login(request, aspirante)
     return redirect('/aspirante/inicio')
 
-def guardar_d(request):
-    #registrar director aquí
-    pass
-    return redirect('/aspirante/')
-
+#login
+def ingresar_a(request):
+    email = request.POST.get('email', False)
+    password = request.POST.get('password', False)
+    usuario = authenticate(email=email, password=password)
+    if usuario is not None:
+        login(request, usuario)
+        return redirect('/aspirante/inicio')
+    else:
+        return redirect('/')
