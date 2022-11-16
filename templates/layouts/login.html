@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <span>{% block usuario %} {% endblock %}</span>
                     <h3 class="text py-3">Ingresa tus datos para Iniciar Sesión</h3>
-                    <form method="POST">{% csrf_token %}
+                    <form action="{% block url-inicio %}{% endblock %}" method="POST">{% csrf_token %}
                         {{form|crispy}}
                         <div class="form-group">
                             <div class="d-grid">
@@ -35,14 +35,14 @@
                                         </button>
                                     </div>
                                     <div class="col col-lg-9">
-                                        <a href="{% block url-inicio %}{% endblock %}" class="btn btn-danger btn-lg w-100 my-1" role="button">Iniciar sesión</a>
+                                        <input type="submit" value="Iniciar sesión" class="btn btn-danger btn-lg w-100 my-1">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col col-lg-6">
-                                <a href="/">¿Olvidaste tu clave?</a>
+                                <a href="{% block url-recuperar %}{%endblock%}">¿Olvidaste tu clave?</a>
                             </div>
                             <div class="col col-lg-6">
                                 <a href="{% block url-registro %}{%endblock%}" class="btn btn-primary btn-light" role="button">Regístrate</a>

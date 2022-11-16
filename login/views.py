@@ -1,6 +1,5 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.messages.api import success
 from login.forms import *
 from login.models import Aspirante
@@ -38,16 +37,19 @@ def guardar_a(request):
         nombres=nombres, apellidos=apellidos, documento=documento, email=email, 
         password=password, egresado_ufps=egresado_ufps, es_extranjero=es_extranjero)
     success(request, F"Bienvenido {nombres}")
-    login(request, aspirante)
-    return redirect('/aspirante/inicio')
+    auth_login(request, aspirante)
+    return redirect('/aspirante/inicio/')
 
 #login
 def ingresar_a(request):
-    email = request.POST.get('email', False)
-    password = request.POST.get('password', False)
-    usuario = authenticate(email=email, password=password)
-    if usuario is not None:
-        login(request, usuario)
-        return redirect('/aspirante/inicio')
+    email = request.POST.get('email', None)
+    password = request.POST.get('password', None)
+    usuario = Aspirante.objects.get(email=email)
+    if usuario is not None and usuario.password == password:
+        auth_login(request, usuario)
+        return redirect('/aspirante/inicio/')
     else:
         return redirect('/')
+
+def recuperar_a(request):
+    return render(request, 'aspirante/recuperar_a.html')
