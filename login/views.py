@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import login as auth_login
 from django.contrib.messages.api import success
 from login.forms import *
-from login.models import Aspirante
-
+from login.models import *
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Create your views here.
 def index(request):
@@ -23,7 +23,7 @@ def guardar_a(request):
     documento = request.POST['documento']
     #foto = request.POST['foto'] #aún no
     email = request.POST['email']
-    password = request.POST['password']
+    password = generate_password_hash(request.POST['password'], 'sha256', 30)
     if request.POST.get('egresado_ufps', False) == "on" :
         egresado_ufps = True
     else: 
@@ -45,7 +45,7 @@ def ingresar_a(request):
     email = request.POST.get('email', None)
     password = request.POST.get('password', None)
     usuario = Aspirante.objects.get(email=email)
-    if usuario is not None and usuario.password == password:
+    if usuario is not None and check_password_hash(usuario.password, password):
         auth_login(request, usuario)
         return redirect('/aspirante/inicio/')
     else:

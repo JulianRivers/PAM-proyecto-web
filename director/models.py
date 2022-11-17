@@ -11,15 +11,23 @@ class Director(AbstractBaseUser):
         return f"Director: {str(self.nombres+self.apellidos)}, correo {self.correo}"
 
 #Maestria 
-class Maestria():
-    codigo = models.CharField("codigo", primary_key=True)
-    nombre = models.CharField("nombre", max_length=100)
-    plazo_inicio = models.DateField("plazo_inicio" )
+class Maestria(models.Model):
+    codigo = models.CharField("Código", primary_key=True, max_length=10)
+    nombre = models.CharField("Nombre", max_length=100)
+    plazo_inicio = models.DateField("plazo_inicio")
     plazo_final = models.DateField("plazo_final")
     url_prueba = models.CharField("url_prueba", max_length=250)
 
+    USERNAME_FIELD = 'codigo'
+    REQUIRED_FIELDS = ['nombre']
+
+    def __str__(self):
+        return f"Director: {self.codigo}, nombre {self.nombre}"
 
 #  Director_x_maestria
 class DirectorXMaestria(models.Model):
     codigo_director_pk_fk = models.ForeignKey(Director, on_delete=models.CASCADE)
     codigo_maestria_pk_fk = models.ForeignKey(Maestria, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.codigo_director_pk_fk} es director de la maestría -> {self.codigo_maestria_pk_fk}"
