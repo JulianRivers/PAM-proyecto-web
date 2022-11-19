@@ -1,4 +1,5 @@
 from django import forms
+from .models import Aspirante
 
 class RegistrarAspirante(forms.Form):
     #form de registro aspirante

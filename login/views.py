@@ -4,6 +4,7 @@ from django.contrib.messages.api import success
 from login.forms import *
 from login.models import *
 from werkzeug.security import generate_password_hash, check_password_hash
+from .models import Aspirante
 
 # Create your views here.
 def index(request):
@@ -36,6 +37,7 @@ def guardar_a(request):
         es_extranjero = True
     else: 
         es_extranjero = False
+
 
     aspirante = Aspirante.objects.create(
         nombres=nombres, apellidos=apellidos, documento=documento, foto=foto, email=email, 
