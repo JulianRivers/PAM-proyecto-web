@@ -165,3 +165,21 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
 ]
+
+#foto
+import os 
+MEDIA_URL = '/image/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "image")
+
+#email
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'pwufps@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'shtktekymdzdocvy'
+
+EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
