@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     #MIS APPS
     'login',
     'aspirante',
-    'director'
+    'director',
+    'general'
 ]
 
 MIDDLEWARE = [
