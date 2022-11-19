@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.messages.api import success
 from login.forms import *
-from login.models import *
+from general.models import *
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Aspirante
 
