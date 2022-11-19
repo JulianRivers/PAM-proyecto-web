@@ -16,11 +16,15 @@ def director(request):
 def registrar_a(request):
     return render(request, 'aspirante/registrar_a.html', {'form': RegistrarAspirante()})
 
+def recuperar_a(request):
+    return render(request, 'aspirante/recuperacion_pass_a.html')
+
 def guardar_a(request):
     #Registra Aspirantes
     nombres = request.POST['nombres']
     apellidos = request.POST['apellidos']
     documento = request.POST['documento']
+    foto = request.FILES.get('foto')
     #foto = request.POST['foto'] #aún no
     email = request.POST['email']
     password = generate_password_hash(request.POST['password'], 'sha256', 30)
@@ -34,7 +38,7 @@ def guardar_a(request):
         es_extranjero = False
 
     aspirante = Aspirante.objects.create(
-        nombres=nombres, apellidos=apellidos, documento=documento, email=email, 
+        nombres=nombres, apellidos=apellidos, documento=documento, foto=foto, email=email, 
         password=password, egresado_ufps=egresado_ufps, es_extranjero=es_extranjero)
     success(request, F"Bienvenido {nombres}")
     auth_login(request, aspirante)
@@ -50,6 +54,3 @@ def ingresar_a(request):
         return redirect('/aspirante/inicio/')
     else:
         return redirect('/')
-
-def recuperar_a(request):
-    return render(request, 'aspirante/recuperar_a.html')

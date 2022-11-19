@@ -11,6 +11,7 @@ class Aspirante(AbstractBaseUser):
     apellidos = models.CharField('Apellidos', max_length=100)
     documento = models.CharField('Documento de identidad', unique=True, max_length=100)
     email = models.EmailField('Correo Electrónico', max_length=254, unique=True)
+    foto = models.ImageField(upload_to='aspirantes', null=True)
     #foto = models.URLField('Foto de perfil', max_length=255)
     egresado_ufps = models.BooleanField('¿es egresado de la UFPS?', default=False)
     #codigo = models.CharField('Código de egresado', max_length=50)

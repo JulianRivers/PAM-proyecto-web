@@ -16,15 +16,20 @@
     <div class="col bg-white p-5 rounded-end">
         <div class="card">
             <div class="card-body">
-                <h3 class="text mt-2">¿Olvidaste tu contraseña?</h3>
-                <h6 class="text mb-4">Para restablecer su contraseña complete el siguiente formulario con el correo electrónico asociado a su cuenta. A continuación oprima el botón "Enviar enlace" para que sea enviado a su correo el enlace de recuperación.</h6>
+                <h3 class="text py-2">Restablece tu contraseña</h3>
                 <form method="POST">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo electrónico*</label> 
-                        <input type="email" class="form-control" name="email">
-                    </div>
-                    <div class="mb-3">
-                        <button type="button" class="btn btn-danger btn-lg w-100 my-1">Enviar enlace</button>
+                    <div class="form-group">
+                        <div class="mb-3 ">
+                                <label for="password" class="form-label">Introduce tu nueva contraseña</label>
+                                <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="password" class="form-label">Confirma tu nueva contraseña</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-danger btn-lg w-100 my-1">Restablecer contraseña</button>
+                        </div>
                     </div>
                 </form>
             </div>
