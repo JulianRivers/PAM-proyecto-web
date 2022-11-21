@@ -22,7 +22,7 @@ context_object_name = "obj"
                     {% block usuario %} Aspirante {% endblock %}
                     <h3 class="text py-2">Ingresa tus datos para Registrarte</h3>
                     <!-- POST  -->
-                    <form action="/guardar_a/" name="registro" method="POST" enctype="multipart/form-data" autocomplete="off">
+                    <form name="registro" method="POST" enctype="multipart/form-data" autocomplete="off">
                         {% csrf_token %}
                         {{form|crispy}}
                         <div class="form-group">

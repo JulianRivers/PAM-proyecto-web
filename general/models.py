@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, User
 
 # Create your models here.
 
@@ -20,7 +20,8 @@ class Maestria(models.Model):
     def __str__(self):
         return f"Director: {self.codigo}, nombre {self.nombre}"
 
-class Aspirante(AbstractBaseUser):
+class Aspirante(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
     email = models.EmailField('Correo Electrónico', max_length=254, unique=True)
