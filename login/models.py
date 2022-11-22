@@ -1,15 +1,25 @@
-from enum import unique
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin  
-from django.utils import timezone  
-from django.utils.translation import gettext_lazy as _  
+from django.contrib.auth.models import AbstractBaseUser
 
 # Create your models here.
 
-#mirar nulos 
+class Tipo_documento(models.Model):
+    tipo_documento = models.CharField('Tipo de documento', max_length=50)
+
 class Aspirante(AbstractBaseUser):
+    nombres = models.CharField('Nombres', max_length=100)
+    apellidos = models.CharField('Apellidos', max_length=100)
     documento = models.CharField('Documento de identidad', unique=True, max_length=100)
-    email = models.EmailField('Correo Electrónico', max_length=254, unique=True, null=False)
-    nombres = models.CharField('Nombres', max_lenght=150, null=False)
-    apellidos = models.CharField('Apellidos', max_lenght=150, null=False)
-    foto = models.CharField('Foto de perfil', max_length=None)
+    email = models.EmailField('Correo Electrónico', max_length=254, unique=True)
+    #foto = models.URLField('Foto de perfil', max_length=255)
+    egresado_ufps = models.BooleanField('¿es egresado de la UFPS?', default=False)
+    #codigo = models.CharField('Código de egresado', max_length=50)
+    es_extranjero = models.BooleanField('Extranjero', default=False)
+    
+    USERNAME_FIELD = 'id'
+    REQUIRED_FIELDS = ['documento', 'email', 'nombres', 'apellidos', 'es_extranjero']
+
+    is_email_verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Aspirante: {self.documento} nombre: {self.nombres} {self.apellidos} email: {self.email}"

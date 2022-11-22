@@ -1,0 +1,17 @@
+{% extends 'layouts/dashboard.html' %}
+
+{% block sidecontent %}
+    <p>este el sidebar</p>
+{% endblock %}
+
+{% block dash-content %}
+    <h1> Hola :)</h1>
+    <br>
+    <div>
+        <span>nombres: {{aspirante.nombres}}</span><br>
+        <span>apellidos: {{aspirante.apellidos}}</span><br>
+        <span>email: {{aspirante.email}}</span><br>
+        <span>documento: {{aspirante.documento}}</span><br>
+    </div>
+{% endblock %}
+
