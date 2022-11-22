@@ -10,6 +10,7 @@ class RegistrarAspirante(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}), required=True)
     egresado_ufps = forms.BooleanField(required=False)
     es_extranjero = forms.BooleanField(required=False)
+    
 
 class LoginAspirante(forms.Form):
     email = forms.EmailField(label='Correo', required=True)

@@ -7,6 +7,9 @@ class Director(AbstractBaseUser):
     apellidos = models.CharField('Apellidos', max_length=100)
     correo = models.CharField('Correo', max_length=100)
 
+    USERNAME_FIELD = 'id'
+    REQUIRED_FIELDS = ['nombre', "apellidos","correo"]
+
     def __str__(self):
         return f"Director: {str(self.nombres+self.apellidos)}, correo {self.correo}"
 

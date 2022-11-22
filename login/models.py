@@ -19,5 +19,7 @@ class Aspirante(AbstractBaseUser):
     USERNAME_FIELD = 'id'
     REQUIRED_FIELDS = ['documento', 'email', 'nombres', 'apellidos', 'es_extranjero']
 
+    is_email_verified = models.BooleanField(default=False)
+
     def __str__(self):
         return f"Aspirante: {self.documento} nombre: {self.nombres} {self.apellidos} email: {self.email}"
