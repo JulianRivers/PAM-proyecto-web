@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login
 from django.contrib.messages.api import success
 from login.forms import *
-from login.models import *
+from general.models import *
 from werkzeug.security import generate_password_hash, check_password_hash
 #verificar por correo aspirantes 
 from django.core.mail import EmailMessage
@@ -14,9 +13,12 @@ from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from .utils import generate_token
 
 # Create your views here.
+
+
 def index(request):
     form = LoginAspirante()
-    return render(request, 'aspirante/login_a.html', {'form':form})
+    return render(request, 'aspirante/login_a.html', {'form': form})
+
 
 def director(request):
     return render(request, 'director/login_d.html')
@@ -83,7 +85,12 @@ def ingresar_a(request):
         auth_login(request, usuario)
         return redirect('/aspirante/inicio/')
     else:
-        return redirect('/')
+        form = RegistrarAspirante()
+    context = {'form': form}
+    return render(request, 'aspirante/registrar_a.html', context)
+
 
 def recuperar_a(request):
-    return render(request, 'aspirante/recuperar_a.html')
+    return render(request, 'aspirante/recuperacion_pass_a.html')
+
+# login

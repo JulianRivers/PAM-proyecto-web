@@ -1,2 +1,7 @@
 # Django
 db.sqlite3
+
+#media
+*.jpg
+*.jpeg
+*.png
