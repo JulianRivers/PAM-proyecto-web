@@ -22,7 +22,7 @@ class RegistrarAspirante(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 class LoginAspirante(forms.Form):
-    email = forms.EmailField(label='Correo', required=True)
+    username = forms.EmailField(label='Correo', required=True)
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}), required=True)
 
 class RegistrarDirector(forms.Form):
