@@ -53,3 +53,6 @@ def registrar_a(request):
 
 def recuperar_a(request):
     return render(request, 'aspirante/recuperacion_pass_a.html')
+
+def prueba(request):
+    return render(request, 'prueba.html')

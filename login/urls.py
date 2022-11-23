@@ -10,4 +10,5 @@ urlpatterns = [
     path('director/', views.director, name='director'),
     path('registrar_a/', views.registrar_a, name='registrar_a'),
     path('recuperar_a/', views.recuperar_a, name='recuperar_a'),
+    path('prueba/', views.prueba)
 ]
