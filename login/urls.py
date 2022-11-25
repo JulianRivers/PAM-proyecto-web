@@ -12,6 +12,6 @@ urlpatterns = [
     path('director/', views.director, name='director'),
     path('registrar_a/', views.registrar_a, name='registrar_a'),
     path('recuperar_a/', views.recuperar_a, name='recuperar_a'),
-    path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('logout/', LogoutView.as_view(template_name='layouts/logout.html'), name='logout'),
     path('prueba/', views.prueba)
 ]

@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
-
-urlpatterns = [
-   path('director/inicio/', views.inicio)
+app_name = 'director'
+urlpatterns  = [
+   path('director/inicio/', views.inicio),
+   path('director/aspirantes/', views.aspirante),
 ]
 

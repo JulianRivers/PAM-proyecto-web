@@ -1,10 +1,11 @@
-{% extends "layouts/base.html" %}
+{% extends 'layouts/base.html' %}
 
-{% block title %} Admitidos {% endblock %}
+{% block title %}
+  Admitidos
+{% endblock %}
 
 {% block bootstrap %}
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
 {% endblock %}
 
 {% block js-bootstrap %}
@@ -12,5 +13,24 @@
 {% endblock %}
 
 {% block body %}
-
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Documento</th>
+        <th scope="col">Código</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for aspirante in aspirantes %}
+          <tr>
+            <td>{{ aspirante.nombres }}</td>
+            <td>{{ aspirante.apellidos }}</td>
+            <td>{{ aspirante.documento }}</td>
+            <td>{{ aspirante.codigo }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

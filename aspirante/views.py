@@ -1,5 +1,7 @@
+from urllib import request
 from django.shortcuts import render, redirect
 from general.models import *
+
 # Create your views here.
 
 def inicio(request):
@@ -35,3 +37,5 @@ def maestria(request, codigo=115):
         'codigo': str(codigo)
     }
     return render(request,'aspirante/maestria.html', context)
+
+
