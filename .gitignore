@@ -5,3 +5,7 @@ db.sqlite3
 *.jpg
 *.jpeg
 *.png
+
+django
+migrations
+__pycache__
