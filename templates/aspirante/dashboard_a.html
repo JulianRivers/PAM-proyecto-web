@@ -1,12 +1,17 @@
 {% extends 'layouts/dashboard.html' %}
 
-{% block sidecontent %}
-    <p>este el sidebar</p>
-{% endblock %}
-
 {% block dash-content %}
-    <div class="card">
-        <p>hola</p>
+<div class="maestrias" style="display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); ">
+    {% for maestria in maestrias %}
+    <div class="card" style="width: 18rem; margin-top: 10px;">
+        <img class="card-img-top" src="{{maestria.imagen}}" alt="Imagen maestria" style="height: 250px;">
+        <div class="card-body">
+            <h5 class="card-title">{{maestria.nombres}}</h5>
+            <p class="card-text">{{maestria.descripcion}}</p>
+            <a href="{{maestria.codigo}}" class="btn btn-danger">Ver Maestria</a>
+        </div>
     </div>
+    {% endfor %}    
+</div>
 {% endblock %}
-

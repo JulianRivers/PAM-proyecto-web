@@ -4,7 +4,8 @@ from login.forms import *
 from general.models import *
 from general.models import Aspirante
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, logout as auth_logout
+from django.contrib.auth.models import AnonymousUser
 
 def index(request):
     if request.method == 'POST':
@@ -53,6 +54,10 @@ def registrar_a(request):
 
 def recuperar_a(request):
     return render(request, 'aspirante/recuperacion_pass_a.html')
+
+def logout(request):
+    request.user = AnonymousUser()
+    return redirect('/')
 
 def prueba(request):
     return render(request, 'prueba.html')

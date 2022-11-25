@@ -2,7 +2,6 @@
 {% load static %}
 {% block css-personal %}
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
 
@@ -27,7 +26,7 @@
 
     <a href="" class="personal">
         <div class="personal__img">
-            <img src="#" alt="Foto de perfil Aspirante">
+            <img src="https://cdn-icons-png.flaticon.com/512/989/989000.png" alt="Foto de perfil Aspirante">
         </div>
         <span class="personal-name">{{aspirante.nombres}}</span>
     </a>
@@ -44,7 +43,7 @@
 
             <div class="personal-info">
                 <div class="personal__img">
-                    <img src="{{user.foto}}" alt="Foto de perfil Aspirante">
+                    <img src="https://cdn-icons-png.flaticon.com/512/989/989000.png" alt="Foto de perfil Aspirante">
                 </div>
                 <span class="personal-name">{{aspirante.nombres}}</span>
             </div>
@@ -57,7 +56,7 @@
 
                 <a href="#" class="nav__link">
                     <i class='bx bxs-user-detail nav__icon'></i>
-                    <span class="nav__name">Información personal</span>
+                    <span class="nav__name">Información</span>
                 </a>
 
                 {% block nav-items %}
@@ -65,17 +64,17 @@
             </div>
         </div>
 
-        <a href="#" class="nav__link cerrar">
+        <a href="/logout" class="nav__link cerrar">
             <i class='bx bx-log-out nav__icon'></i>
             <span class="nav__name">Cerrar sesión</span>
         </a>
     </nav>
 </div>
 
-<div id="dash-content"></div>
+<div class="dash-content">
 {% block dash-content %}
 {% endblock %}
-
+</div>
 <script src="../../static/js/main.js"></script>
 
 

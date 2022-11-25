@@ -1,0 +1,84 @@
+{% extends 'layouts/dashboard.html' %}
+
+{% block dash-content %}
+<div class="maestrias" style="display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+
+    {% if inscripcion.id_maestria_id == codigo %}
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Entrevista</h5>
+            {% if inscripcion.calificacion_entrevista > 0 %}
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt=""
+                style="width: 50px; margin-left: 80px;">
+            {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190406.png" alt=""
+                style="width: 50px; margin-left: 80px;">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Prueba</h5>
+            {% if inscripcion.calificacion_prueba > 0 %}
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt=""
+                style="width: 50px; margin-left: 80px;">
+            {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190406.png" alt=""
+                style="width: 50px; margin-left: 80px;">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Hoja de vida</h5>
+            {% if inscripcion.calificacion_cv > 0 %}
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt=""
+                style="width: 50px; margin-left: 80px;">
+            {% else %}
+            <img src="https://cdn-icons-png.flaticon.com/512/190/190406.png" alt=""
+                style="width: 50px; margin-left: 80px;">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Fecha de inscripcion</h5>
+            {% if maestria.plazo_inicio is None %}
+            En este momento no se encuentran habilitadas las inscripciones, Esperar la próxima fecha.
+            {% else %}
+            Las inscripciones estarán habilitadas desde {{maestria.plazo_inicio}} hasta {{maestria.plazo_final}}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="maestrias" style="display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Link de la prueba</h5>
+            El día de la prueba podrá realizarla 
+            <a href="{{inscripcion.url_prueba}}">aquí</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Link de la entrevista</h5>
+            El día de la entrevista  podrá realizarla 
+            <a href="{{inscripcion.url_entrevista}}">aquí</a>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="card" style="width: 80vmax;padding: 20px; margin-top: 10px;">
+    <h2>No está inscrito en esta maestria</h2>
+    <span>aquí info de la maestria y redirect a inscripción</span>
+</div>
+{% endif %}
+
+{% endblock %}

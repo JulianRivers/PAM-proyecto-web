@@ -10,15 +10,17 @@ class Tipo_documento(models.Model):
 class Maestria(models.Model):
     codigo = models.CharField("Código", primary_key=True, max_length=10)
     nombre = models.CharField("Nombre", max_length=100)
-    plazo_inicio = models.DateField("plazo_inicio")
-    plazo_final = models.DateField("plazo_final")
-    url_prueba = models.CharField("url_prueba", max_length=250)
+    descripcion = models.CharField("Descripción", max_length=255)
+    imagen = models.CharField("imagen", max_length=50)
+    plazo_inicio = models.DateField("plazo inicio")
+    plazo_final = models.DateField("plazo final")
+    url_prueba = models.CharField("url prueba", max_length=250)
 
     USERNAME_FIELD = 'codigo'
-    REQUIRED_FIELDS = ['nombre']
+    REQUIRED_FIELDS = ['codigo', 'nombre', 'descripcion', 'imagen']
 
     def __str__(self):
-        return f"Director: {self.codigo}, nombre {self.nombre}"
+        return f"{self.nombre}, {self.codigo}"
 
 class Aspirante(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
