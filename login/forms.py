@@ -22,7 +22,9 @@ class RegistrarAspirante(UserCreationForm):
 
 class LoginAspirante(forms.Form):
     username = forms.EmailField(label='Correo', required=True)
-    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}), required=True)
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}),
+     required=True)
+
 
 class RegistrarDirector(forms.Form):
     #form de registro director

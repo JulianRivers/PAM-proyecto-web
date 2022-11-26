@@ -28,9 +28,9 @@ class Aspirante(models.Model):
     apellidos = models.CharField('Apellidos', max_length=100)
     email = models.EmailField('Correo Electrónico', max_length=254, unique=True)
     documento = models.CharField('Documento de identidad', unique=True, max_length=100)
-    foto = models.URLField('Foto de perfil', max_length=255)
+    foto = models.FileField(upload_to="aspirantes", null=False)
     egresado_ufps = models.BooleanField('¿es egresado de la UFPS?', default=False)
-    codigo = models.CharField('Código de egresado', max_length=50)
+    codigo = models.CharField('Código de egresado', max_length=50, null=False)
     es_extranjero = models.BooleanField('Extranjero', default=False)
     
     USERNAME_FIELD = 'id'
@@ -73,26 +73,31 @@ class Cohorte(models.Model):
 class Inscripcion(models.Model):
     id_aspirante = models.ForeignKey(Aspirante, on_delete=models.CASCADE)
     id_maestria = models.ForeignKey(Maestria, on_delete=models.CASCADE)
-    id_cohorte = models.ForeignKey(Cohorte, on_delete=models.CASCADE)
+    id_cohorte = models.ForeignKey(Cohorte, on_delete=models.CASCADE, default=1)
+    foto = models.FileField(upload_to="documentos", null=False, default='')
+    copia_documento = models.FileField(upload_to="documentos", null=False, default='')
+    diploma_pregrado = models.FileField(upload_to="documentos", null=False, default='')
+    notas_pregrado = models.FileField(upload_to="documentos", null=True)
+    comprobante_pago = models.FileField(upload_to="documentos", null=False, default='')
+    resumen_cv =  models.FileField(upload_to="documentos", null=False, default='')
+    referencia_uno  = models.FileField(upload_to="documentos", null=False, default='')
+    referencia_dos  = models.FileField(upload_to="documentos", null=False, default='')
+    formato_inscripcion  = models.FileField(upload_to="documentos", null=False, default='')
+    pasaporte_visa = models.FileField(upload_to="documentos", null=True)
+    notas_apostilladas = models.FileField(upload_to="documentos", null=True)
+    diploma_apostillado = models.FileField(upload_to="documentos", null=True)
     estado_pago = models.BooleanField('Estado del pago', default=False)
-    doc_entrevista = models.URLField('Documento de entrevista', max_length=255)
+    aprobado = models.BooleanField('Aprobado', default=False)
     calificacion_entrevista = models.IntegerField('Calificación de entrevista', default=0)
-    doc_prueba = models.URLField('Documento de prueba', max_length=255)
     calificacion_prueba = models.IntegerField('Calificación de prueba', default=0)
-    doc_hoja_vida = models.URLField('Documento de hoja de vida', max_length=255)
     calificacion_cv = models.IntegerField('Calificación de hoja de vida', default=0)
-    copia_diploma_pregrado = models.URLField('Documento de diploma de pregrado', max_length=255)
-    copia_notas_acta = models.URLField('Documento de notas y acta de grado', max_length=255)
-    copia_pasaporte_visa = models.URLField('Documento de pasaporte y visa', max_length=255)
-    notas_apostillada = models.URLField('Documento de notas apostillada', max_length=255)
-    diploma_apostillado = models.URLField('Documento de diploma apostillado', max_length=255)
-    doc_pago_inscripcion = models.URLField('Documento de pago de inscripción', max_length=255)
-    fecha_entrevista = models.DateField('Fecha de entrevista', max_length=255)
+    fecha_entrevista = models.DateField('Fecha de entrevista', auto_now_add=True)
     puntaje_total = models.IntegerField('Puntaje total', default=0)
-    fotocopia_cedula = models.URLField('Documento de fotocopia de cédula', max_length=255)
-    url_prueba = models.URLField('Documento de prueba', max_length=255)
     url_entrevista = models.URLField('Documento de entrevista', max_length=255)
     
+    REQUIRED_FIELDS = ['id_aspirante','id_maestria','foto','copia_documento','diploma_pregrado','comprobante_pago','resumen_cv',
+                    'referencia_uno','referencia_dos','formato_inscripcion']
+
     def __str__(self):
         return f"Inscripción: {self.id_aspirante} - {self.id_maestria}"
     
