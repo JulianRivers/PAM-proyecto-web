@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, User
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -39,15 +39,17 @@ class Aspirante(models.Model):
     def __str__(self):
         return f"Aspirante: {self.documento} nombre: {self.nombres} {self.apellidos} email: {self.email}"
 
-class Director(AbstractBaseUser):
+class Director(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     nombres = models.CharField('Nombres', max_length=100)
     apellidos = models.CharField('Apellidos', max_length=100)
-    correo = models.CharField('Correo', max_length=100)
+    email = models.CharField('Correo', max_length=100)
 
     USERNAME_FIELD = 'id'
     REQUIRED_FIELDS = [ 'email', 'nombres', 'apellidos']
+    
     def __str__(self):
-        return f"Director: {str(self.nombres+self.apellidos)}, correo {self.correo}"
+        return f"Director: {str(self.nombres+self.apellidos)}, correo {self.email}"
 
 #  Director_x_maestria
 class DirectorXMaestria(models.Model):

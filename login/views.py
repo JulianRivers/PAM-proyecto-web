@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.messages.api import success
 from login.forms import *
 from general.models import *
 from general.models import Aspirante
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.auth import login
-from django.contrib.auth.models import AnonymousUser
 
 def index(request):
     if request.method == 'POST':
@@ -15,12 +13,21 @@ def index(request):
         if usuario is not None and usuario.check_password(password):
             login(request, usuario)
             return redirect('/aspirante/inicio/')
-    form = LoginAspirante()
+    form = Login()
     return render(request, 'aspirante/login_a.html', {'form': form})
 
 
 def director(request):
-    return render(request, 'director/login_d.html')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        usuario = User.objects.get(username=username)
+        if usuario is not None and usuario.check_password(password):
+            login(request, usuario)
+            return redirect('/director/inicio/')
+    context = {'form': Login()}
+    return render(request, 'director/login_d.html', context)
+
 
 def registrar_a(request):
     if request.method == 'POST':

@@ -1,7 +1,5 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-
-from login.forms import LoginAspirante
 from . import views
 
 app_name="login"

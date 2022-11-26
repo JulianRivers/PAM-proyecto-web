@@ -17,6 +17,13 @@ body {
     background-repeat: no-repeat;
 }
 
+.parra {
+    background-image: url(https://www.laopinion.com.co/sites/default/files/2021-06/H%C3%A9ctor-Miguel-Parra.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
 .container {
     margin-bottom: 3%;
 }

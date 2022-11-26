@@ -20,7 +20,7 @@ class RegistrarAspirante(UserCreationForm):
         fields = ['nombres', 'apellidos', 'documento','username', 'foto', 'password1', 'password2','egresado_ufps', 'es_extranjero']
         help_texts = {k:"" for k in fields}
 
-class LoginAspirante(forms.Form):
+class Login(forms.Form):
     username = forms.EmailField(label='Correo', required=True)
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}), required=True)
 

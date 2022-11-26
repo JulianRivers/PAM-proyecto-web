@@ -6,6 +6,6 @@ db.sqlite3
 *.jpeg
 *.png
 
-django
+#django
 migrations
 __pycache__
