@@ -19,7 +19,7 @@
 
     <a href="" class="personal">
         <div class="personal__img">
-            <img src="#" alt="Foto de perfil Aspirante">
+            <img src="{{aspirante.foto.url}}" width="50" height="50" alt="Foto de perfil Aspirante">
         </div>
         <span class="personal-name">{{aspirante.nombres}}</span>
     </a>
@@ -36,7 +36,7 @@
 
             <div class="personal-info">
                 <div class="personal__img">
-                    <img src="{{user.foto}}" alt="Foto de perfil Aspirante">
+                    <img src="{{aspirante.foto.url}}" width="50" height="50">
                 </div>
                 <span class="personal-name">{{aspirante.nombres}}</span>
             </div>
@@ -46,12 +46,10 @@
                     <i class='bx bx-home-alt-2 nav__icon'></i>
                     <span class="nav__name">Inicio</span>
                 </a>
-
                 <a href="#" class="nav__link">
                     <i class='bx bxs-user-detail nav__icon'></i>
                     <span class="nav__name">Información personal</span>
                 </a>
-
                 {% block nav-items %}
                 {% endblock %}
             </div>
