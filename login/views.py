@@ -5,6 +5,7 @@ from general.models import *
 #from general.models import Aspirante
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib.auth.models import AnonymousUser
 
 def index(request):
     if request.method == 'POST':
@@ -59,9 +60,12 @@ def inscripcion_a(request):
     if request.method == 'POST':
         inscripcion = Inscripcion()
         maestria = Maestria.objects.get(codigo=request.POST['id_maestria'])
+        print(f"{maestria}")
         inscripcion.id_maestria = maestria
-        #aspirante = Aspirante.objects.get(user_id=request.POST['id_aspirante'])
-        #inscripcion.id_aspirante = aspirante
+        user = request.user
+        aspirante = Aspirante.objects.get(email=user.username)
+        print(f"{aspirante}")
+        inscripcion.id_aspirante = aspirante
         inscripcion.foto = request.FILES.get('foto')
         inscripcion.copia_documento = request.FILES.get('copia_documento')
         inscripcion.diploma_pregrado = request.FILES.get('diploma_pregrado')
@@ -77,12 +81,11 @@ def inscripcion_a(request):
         
         try:
             inscripcion.save()
-            return redirect('aspirante:inicio')
-        except:
-            mensaje = 'Error'
+            return redirect('login:index')
+        except Exception as e:
+            print(e)
     context = {'maestrias' : maestrias}
     return render(request, 'aspirante/inscripcion_a.html', context)
-    #maestrias = Maestria.objects.all()
-    #directores = Director.objects.get(id=1)
-    #context = {'maestrias' : maestrias}
-    #return render(request, 'aspirante/inscripcion_a.html', context)
+    
+def prueba(request):
+    return render(request, 'prueba.html')

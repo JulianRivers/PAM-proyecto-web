@@ -10,15 +10,17 @@ class Tipo_documento(models.Model):
 class Maestria(models.Model):
     codigo = models.CharField("Código", primary_key=True, max_length=10)
     nombre = models.CharField("Nombre", max_length=100)
-    plazo_inicio = models.DateField("plazo_inicio")
-    plazo_final = models.DateField("plazo_final")
-    url_prueba = models.CharField("url_prueba", max_length=250)
+    descripcion = models.CharField("Descripción", max_length=255)
+    imagen = models.CharField("imagen", max_length=50)
+    plazo_inicio = models.DateField("plazo inicio")
+    plazo_final = models.DateField("plazo final")
+    url_prueba = models.CharField("url prueba", max_length=250)
 
     USERNAME_FIELD = 'codigo'
-    REQUIRED_FIELDS = ['nombre']
+    REQUIRED_FIELDS = ['codigo', 'nombre', 'descripcion', 'imagen']
 
     def __str__(self):
-        return f"Director: {self.codigo}, nombre {self.nombre}"
+        return f"{self.nombre}, {self.codigo}"
 
 class Aspirante(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -69,10 +71,9 @@ class Cohorte(models.Model):
     REQUIRED_FIELDS = ['nombre', 'fecha_inicio', 'fecha_finalizacion', 'cupos_aprobados', 'cupos_asignados']
     
 class Inscripcion(models.Model):
-    #id_aspirante = models.ForeignKey(Aspirante, on_delete=models.CASCADE)
+    id_aspirante = models.ForeignKey(Aspirante, on_delete=models.CASCADE)
     id_maestria = models.ForeignKey(Maestria, on_delete=models.CASCADE)
-    #id_cohorte = models.ForeignKey(Cohorte, on_delete=models.CASCADE)
-    #estado_pago = models.BooleanField('Estado del pago', default=False)
+    id_cohorte = models.ForeignKey(Cohorte, on_delete=models.CASCADE, default=1)
     foto = models.FileField(upload_to="documentos", null=False, default='')
     copia_documento = models.FileField(upload_to="documentos", null=False, default='')
     diploma_pregrado = models.FileField(upload_to="documentos", null=False, default='')
@@ -85,19 +86,20 @@ class Inscripcion(models.Model):
     pasaporte_visa = models.FileField(upload_to="documentos", null=True)
     notas_apostilladas = models.FileField(upload_to="documentos", null=True)
     diploma_apostillado = models.FileField(upload_to="documentos", null=True)
-    #calificacion_entrevista = models.IntegerField('Calificación de entrevista', default=0)
-    #calificacion_prueba = models.IntegerField('Calificación de prueba', default=0)
-    #calificacion_cv = models.IntegerField('Calificación de hoja de vida', default=0)
-    #fecha_entrevista = models.DateField('Fecha de entrevista', max_length=255)
-    #puntaje_total = models.IntegerField('Puntaje total', default=0)
-    #url_prueba = models.URLField('Documento de prueba', max_length=255)
-    #url_entrevista = models.URLField('Documento de entrevista', max_length=255)
+    estado_pago = models.BooleanField('Estado del pago', default=False)
+    aprobado = models.BooleanField('Aprobado', default=False)
+    calificacion_entrevista = models.IntegerField('Calificación de entrevista', default=0)
+    calificacion_prueba = models.IntegerField('Calificación de prueba', default=0)
+    calificacion_cv = models.IntegerField('Calificación de hoja de vida', default=0)
+    fecha_entrevista = models.DateField('Fecha de entrevista', auto_now_add=True)
+    puntaje_total = models.IntegerField('Puntaje total', default=0)
+    url_entrevista = models.URLField('Documento de entrevista', max_length=255)
     
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['id_aspirante','id_maestria','foto','copia_documento','diploma_pregrado','comprobante_pago','resumen_cv',
+                    'referencia_uno','referencia_dos','formato_inscripcion']
 
     def __str__(self):
-        #return f"Inscripción: {self.id_aspirante} - {self.id_maestria}"
-        return f"Inscripción: {self.id_maestria}"
+        return f"Inscripción: {self.id_aspirante} - {self.id_maestria}"
     
 class carta_referencia(models.Model):
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)

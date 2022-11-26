@@ -72,9 +72,6 @@ a{
   border-radius: 50%;
 }
 
-
-
-
 /*===== NAV =====*/
 .l-navbar{
   position: fixed;
@@ -221,6 +218,5 @@ a{
     padding-left: calc(var(--nav-width) + 188px);
   }
 }
-
 
 
