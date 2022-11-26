@@ -34,7 +34,7 @@ def registrar_a(request):
         nombres = request.POST['nombres']
         apellidos = request.POST['apellidos']
         documento = request.POST['documento']
-        foto = request.FILES.get('foto')
+        foto = request.FILES['foto']
         email = request.POST['username']
         if request.POST.get('egresado_ufps', False) == "on":
             egresado_ufps = True
@@ -44,13 +44,13 @@ def registrar_a(request):
             es_extranjero = True
         else:
             es_extranjero = False
-        form = RegistrarAspirante(request.POST)
+        form = RegistrarAspirante(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             user = User.objects.get(username=email)
             username = form.cleaned_data['username']
             aspirante = Aspirante.objects.create(user_id=user.id, nombres=nombres, apellidos=apellidos, documento=documento,
-                                                 email=email, egresado_ufps=egresado_ufps, es_extranjero=es_extranjero)
+                                                 email=email, foto=foto, egresado_ufps=egresado_ufps, es_extranjero=es_extranjero)
             login(request, user)
             return redirect('aspirante:inicio')
     else:
@@ -62,5 +62,37 @@ def registrar_a(request):
 def recuperar_a(request):
     return render(request, 'aspirante/recuperacion_pass_a.html')
 
+def inscripcion_a(request):
+    maestrias = Maestria.objects.all()
+    if request.method == 'POST':
+        inscripcion = Inscripcion()
+        maestria = Maestria.objects.get(codigo=request.POST['id_maestria'])
+        print(f"{maestria}")
+        inscripcion.id_maestria = maestria
+        user = request.user
+        aspirante = Aspirante.objects.get(email=user.username)
+        print(f"{aspirante}")
+        inscripcion.id_aspirante = aspirante
+        inscripcion.foto = request.FILES.get('foto')
+        inscripcion.copia_documento = request.FILES.get('copia_documento')
+        inscripcion.diploma_pregrado = request.FILES.get('diploma_pregrado')
+        inscripcion.notas_pregrado = request.FILES.get('notas_pregrado')
+        inscripcion.comprobante_pago = request.FILES.get('comprobante_pago')
+        inscripcion.resumen_cv = request.FILES.get('resumen_cv')
+        inscripcion.referencia_uno = request.FILES.get('referencia_uno')
+        inscripcion.referencia_dos = request.FILES.get('referencia_dos')
+        inscripcion.formato_inscripcion = request.FILES.get('formato_inscripcion')
+        inscripcion.pasaporte_visa = request.FILES.get('pasaporte_visa')
+        inscripcion.notas_apostilladas = request.FILES.get('notas_apostilladas')
+        inscripcion.diploma_apostillado = request.FILES.get('diploma_apostillado')
+        
+        try:
+            inscripcion.save()
+            return redirect('login:index')
+        except Exception as e:
+            print(e)
+    context = {'maestrias' : maestrias}
+    return render(request, 'aspirante/inscripcion_a.html', context)
+    
 def prueba(request):
     return render(request, 'prueba.html')
