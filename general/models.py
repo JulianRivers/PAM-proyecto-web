@@ -97,6 +97,7 @@ class Inscripcion(models.Model):
     puntaje_total = models.IntegerField('Puntaje total', default=0)
     url_entrevista = models.URLField('Documento de entrevista', max_length=255)
     
+    
     REQUIRED_FIELDS = ['id_aspirante','id_maestria','foto','copia_documento','diploma_pregrado','comprobante_pago','resumen_cv',
                     'referencia_uno','referencia_dos','formato_inscripcion']
 
@@ -110,4 +111,4 @@ class carta_referencia(models.Model):
     
     def __str__(self):
         return f"Carta de referencia: {self.id_inscripcion}"
-    
+
