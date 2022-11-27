@@ -22,8 +22,19 @@
         <div class="col bg-white p-5 rounded-end">
             <div class="card">
                 <div class="card-body">
+                    <div >
+                        {% if messages %}
+                            <div>
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}   
+                            </div>
+                        {% endif %}
+                            </div>
                     <span>{% block usuario %} {% endblock %}</span>
-                    <h3 class="text py-3">Ingresa tus datos para Iniciar Sesión</h3>
+                    <h3 class="text py-3">Inicia Sesión</h3>
                     <form action="{% block url-inicio %}{% endblock %}" method="POST">{% csrf_token %}
                         {{form|crispy}}
                         <div class="form-group">
@@ -52,9 +63,6 @@
                             <div class="col col-lg-6">
                                 <a href="{% block url-registro %}{%endblock%}" class="btn btn-primary btn-light"
                                     role="button">Regístrate</a>
-                            </div>
-                            <div class="col col-lg-6">
-                                <a href="{% block url-inscripcion %}{%endblock%}" class="btn btn-primary btn-light" role="button">Inscribete</a>
                             </div>
                         </div>
                         <hr>

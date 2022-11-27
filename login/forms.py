@@ -8,7 +8,7 @@ class RegistrarAspirante(UserCreationForm):
     nombres = forms.CharField(label='Nombres', required=True, widget=forms.TextInput(attrs={"autofocus": True}))
     apellidos = forms.CharField(label='Apellidos', required=True)
     documento = forms.CharField(label='Documento', max_length=15, required=True)
-    foto = forms.ImageField(required=False)
+    foto = forms.ImageField(required=True)
     username = forms.EmailField(label='Correo', required=True)
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}), required=True)
     password2 = forms.CharField(label="Confirmar contraseña",widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}), required=True)
@@ -21,12 +21,6 @@ class RegistrarAspirante(UserCreationForm):
         help_texts = {k:"" for k in fields}
 
 class Login(forms.Form):
-    username = forms.EmailField(label='Correo', required=True)
-    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}),
+    username = forms.EmailField(label='Correo ', required=True)
+    password = forms.CharField(label='Contraseña ', widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}),
      required=True)
-
-
-class RegistrarDirector(forms.Form):
-    #form de registro director
-    #todos los campos aquí
-    pass

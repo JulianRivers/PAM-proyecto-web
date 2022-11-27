@@ -2,17 +2,25 @@ from django.shortcuts import render, redirect
 from login.forms import *
 from general.models import *
 from general.models import Aspirante
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib import messages
 
 def index(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        usuario = User.objects.get(username=username)
-        if usuario is not None and usuario.check_password(password):
-            login(request, usuario)
-            return redirect('/aspirante/inicio/')
+        try:
+            usuario = User.objects.get(username=username)
+            if usuario is not None and usuario.check_password(password):
+                login(request, usuario)
+                return redirect('aspirante:inicio')
+            else:
+                messages.error(request, "Contraseña incorrecta")
+        except Exception as e:
+            messages.error(request, "Lo sentimos, no pudimos encontrar tu cuenta")
+            usuario = None
+            print(e)
     form = Login()
     return render(request, 'aspirante/login_a.html', {'form': form})
 
@@ -48,11 +56,13 @@ def registrar_a(request):
         if form.is_valid():
             form.save()
             user = User.objects.get(username=email)
-            username = form.cleaned_data['username']
             aspirante = Aspirante.objects.create(user_id=user.id, nombres=nombres, apellidos=apellidos, documento=documento,
                                                  email=email, foto=foto, egresado_ufps=egresado_ufps, es_extranjero=es_extranjero)
             login(request, user)
+            messages.success(request, f"Bienvenido {nombres}")
             return redirect('aspirante:inicio')
+        else:
+            messages.error(request, "Ups! Algo salió mal.")
     else:
         form = RegistrarAspirante()
     context = {'form': form}
