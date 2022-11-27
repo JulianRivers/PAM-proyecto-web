@@ -112,3 +112,8 @@ class carta_referencia(models.Model):
     def __str__(self):
         return f"Carta de referencia: {self.id_inscripcion}"
 
+class compromisos(models.Model):
+    fecha_examen = models.DateField("fecha_examen", max_length=255)
+    hora_examen = models.DateTimeField("hora_examen",  max_length=255)
+    fecha_entrevista = models.DateField("fecha_entrevista",  max_length=255)
+    hora_entrevista = models.DateTimeField("hora_entrevista",  max_length=255)

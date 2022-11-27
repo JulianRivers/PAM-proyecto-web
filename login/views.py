@@ -85,7 +85,7 @@ def inscripcion_a(request):
         inscripcion.pasaporte_visa = request.FILES.get('pasaporte_visa')
         inscripcion.notas_apostilladas = request.FILES.get('notas_apostilladas')
         inscripcion.diploma_apostillado = request.FILES.get('diploma_apostillado')
-        
+
         try:
             inscripcion.save()
             return redirect('login:index')

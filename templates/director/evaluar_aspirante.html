@@ -1,0 +1,89 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Asignar {% endblock %}
+
+{% block bootstrap %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+{% endblock %}
+
+{% block js-bootstrap %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h4>Nombre:   {{ Director.nombres }}     Codigo: {{ Director.codigo }}</h4>
+</div>
+<div class="container w-75 bg-light mt-5 rounded shadow">
+    <div class="hoja_de_vida">
+        <h3 class="text mt-2">Hoja de vida</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nota_hoja" class="form-label">Asignar nota</label>
+                <br>
+                <a href={{inscripcion.resumen_cv}}>Resumen cv</a>
+                <br>
+                <br>
+                <input type="number" class="form-control" name="nota_hoja" min="0" max="100">
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-danger btn-lg w-100 my-1">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="notas_de_pregrado">
+        <h3 class="text mt-2">Notas de pregrado</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nota_notas" class="form-label">Asignar nota</label> 
+                <br>
+                <a href={{inscripcion.notas_pregrado}}>Notas pregrado</a>
+                <br>
+                <br>
+                <input type="number" class="form-control" name="nota_notas" min="0" max="100">
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-danger btn-lg w-100 my-1">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="carta_de_referencia1">
+        <h3 class="text mt-2">Carta de referencia #1</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nota_ref1" class="form-label">Asignar nota</label> 
+                <br>
+                <a href={{inscripcion.refencia_uno}}>Referencia uno</a>
+                <br>
+                <br>
+                <input type="number" class="form-control" name="nota_ref1" min="0" max="100">
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-danger btn-lg w-100 my-1">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="carta_de_referencia1">
+        <h3 class="text mt-2">Carta de referencia #2</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="nota_ref2" class="form-label">Asignar nota</label>
+                <br>
+                <a href={{inscripcion.refencia_dos}}>Referencia dos</a>
+                <br>
+                <br> 
+                <input type="number" class="form-control" name="nota_ref2" min="0" max="100">
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-danger btn-lg w-100 my-1">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container w-75 bg-light mt-5 rounded shadow">
+    <div class="mb-3">
+        <button type="button" class="btn btn-danger btn-lg w-100 my-1">Finalizar calificion</button>
+    </div>
+</div>
+{% endblock %}
