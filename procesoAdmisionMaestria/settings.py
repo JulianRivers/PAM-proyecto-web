@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ecpnpz=%nh_@%787fto#it&xf+m3hr+71%4s5!7j2s3jl=1a37
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'login',
     'aspirante',
     'director',
-    'general'
+    'general',
+    'helpers',
+    'static',
+    'media'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -120,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -134,10 +138,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#Recursos
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'static/css/')]
-
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'static/css/'),]
 #forms bootstrap
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -152,11 +156,6 @@ MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
 }
 
-# AUTHENTICATION_BACKENDS = [
-#     'django.contrib.auth.backends.ModelBackend',
-#     'login.authentication.AuthByEmailBackend',
-# ]
-
 #password encriptada
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.ScryptPasswordHasher',
@@ -165,13 +164,6 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
 ]
-
-#Login
-LOGIN_REDIRECT_URL= 'aspirante:inicio'
-#foto
-import os 
-MEDIA_URL = '/image/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "image")
 
 #email
 EMAIL_HOST = 'smtp.gmail.com'

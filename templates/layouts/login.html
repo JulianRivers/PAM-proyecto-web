@@ -32,7 +32,7 @@
                                 {% endfor %}   
                             </div>
                         {% endif %}
-                            </div>
+                    </div>
                     <span>{% block usuario %} {% endblock %}</span>
                     <h3 class="text py-3">Inicia Sesión</h3>
                     <form action="{% block url-inicio %}{% endblock %}" method="POST">{% csrf_token %}

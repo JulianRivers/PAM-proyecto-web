@@ -1,8 +1,11 @@
 {% extends "layouts/base.html" %}
 {% load crispy_forms_tags %}
 
-context_object_name = "obj" 
 
+{% block title %}
+    Registrar
+{% endblock title %}
+    
 {% block bootstrap %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -19,6 +22,17 @@ context_object_name = "obj"
         <div class="col bg-white p-5 rounded-end">
             <div class="card">
                 <div class="card-body">
+                    <div >
+                        {% if messages %}
+                            <div>
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}   
+                            </div>
+                        {% endif %}
+                    </div>  
                     {% block usuario %} Aspirante {% endblock %}
                     <h3 class="text py-2">Ingresa tus datos para Registrarte</h3>
                     <!-- POST  -->

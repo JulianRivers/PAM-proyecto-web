@@ -9,8 +9,8 @@ urlpatterns = [
     path('login/', views.index, name='login'),
     path('director/', views.director, name='director'),
     path('registrar_a/', views.registrar_a, name='registrar_a'),
+    path('registrar_d/', views.registrar_d, name='registrar_d'),
     path('recuperar_a/', views.recuperar_a, name='recuperar_a'),
-    path('inscripcion_a/', views.inscripcion_a, name='inscripcion_a'),
     path('logout/', LogoutView.as_view(template_name='layouts/logout.html'), name='logout'),
     path('prueba/', views.prueba)
 ]

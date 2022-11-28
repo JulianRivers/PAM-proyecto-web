@@ -28,7 +28,7 @@
 
     <a href="/aspirante/inicio/" class="personal">
         <div class="personal__img">
-            <img src="/media/{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+            <img src="{{ MEDIA_URL}}{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
         </div>
         <span class="personal-name">{{aspirante.nombres}}</span>
     </a>
