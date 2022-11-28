@@ -95,7 +95,7 @@ def inscripcion_a(request):
         inscripcion.pasaporte_visa = request.FILES.get('pasaporte_visa')
         inscripcion.notas_apostilladas = request.FILES.get('notas_apostilladas')
         inscripcion.diploma_apostillado = request.FILES.get('diploma_apostillado')
-        
+
         try:
             inscripcion.save()
             return redirect('login:index')
@@ -106,3 +106,32 @@ def inscripcion_a(request):
     
 def prueba(request):
     return render(request, 'prueba.html')
+
+def registrar_a(request):
+    if request.method == 'POST':
+        nombres = request.POST['nombres']
+        apellidos = request.POST['apellidos']
+        documento = request.POST['documento']
+        foto = request.FILES['foto']
+        email = request.POST['username']
+        if request.POST.get('egresado_ufps', False) == "on":
+            egresado_ufps = True
+        else:
+            egresado_ufps = False
+        if request.POST.get('es_extranjero', False) == "on":
+            es_extranjero = True
+        else:
+            es_extranjero = False
+        form = RegistrarAspirante(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            user = User.objects.get(username=email)
+            username = form.cleaned_data['username']
+            aspirante = Aspirante.objects.create(user_id=user.id, nombres=nombres, apellidos=apellidos, documento=documento,
+                                                 email=email, foto=foto, egresado_ufps=egresado_ufps, es_extranjero=es_extranjero)
+            login(request, user)
+            return redirect('aspirante:inicio')
+    else:
+        form = RegistrarAspirante()
+    context = {'form': form}
+    return render(request, 'aspirante/registrar_a.html', context)
