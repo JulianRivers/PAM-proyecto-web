@@ -5,3 +5,4 @@ from django.db import models
 admin.site.register(Director)
 admin.site.register(DirectorXMaestria)
 admin.site.register(Maestria)
+admin.site.register(compromisos)
