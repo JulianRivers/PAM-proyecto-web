@@ -60,10 +60,8 @@
                                 <a href="{% block url-recuperar %}{%endblock%}" class="btn btn-primary btn-light"
                                     role="button">¿Olvidaste tu clave?</a>
                             </div>
-                            <div class="col col-lg-6">
-                                <a href="{% block url-registro %}{%endblock%}" class="btn btn-primary btn-light"
-                                    role="button">Regístrate</a>
-                            </div>
+                            {% block registrar %}
+                            {% endblock registrar %}        
                         </div>
                         <hr>
                         <div class="row mt-3">

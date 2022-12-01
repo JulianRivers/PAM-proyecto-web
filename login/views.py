@@ -32,10 +32,18 @@ def director(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        usuario = User.objects.get(username=username)
-        if usuario is not None and usuario.check_password(password):
-            login(request, usuario)
-            return redirect('/director/inicio/')
+        try:
+            usuario = User.objects.get(username=username)
+            director = Director.objects.get(email= usuario.username)
+            if usuario is not None and usuario.check_password(password):
+                login(request, usuario)
+                return redirect('/director/inicio/')
+            else:
+                messages.error(request, "Contraseña incorrecta")
+                return redirect('login:director')
+        except Exception as e:
+            messages.error(request, "Su cuenta no está registrada como director")
+            print(e)
     context = {'form': Login()}
     return render(request, 'director/login_d.html', context)
 
@@ -75,9 +83,6 @@ def registrar_a(request):
 
 def recuperar_a(request):
     return render(request, 'aspirante/recuperacion_pass_a.html')
-
-def registrar_d(request):
-    pass
 
 def inscripcion_a(request):
     maestrias = Maestria.objects.all()

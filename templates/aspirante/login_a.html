@@ -2,10 +2,14 @@
 
 {% block usuario %} Aspirante {% endblock %}
 
-{% block url-registro %}/registrar_a/{% endblock %}
-
 {% block url-recuperar %}/recuperar_a/{% endblock %}
 
 {% block img %}bg{% endblock img %}
 
 {% block url-inscripcion %}/inscripcion_a/{% endblock %}
+
+{% block registrar %}
+<div class="col col-lg-6">
+    <a href="/registrar_a/" class="btn btn-primary btn-light" role="button">Regístrate</a>
+</div>
+{% endblock registrar %}

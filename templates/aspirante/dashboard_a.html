@@ -1,5 +1,5 @@
 {% extends 'layouts/dashboard.html' %}
-
+{% load static %}
 {% block dash-content %} 
 <div class="maestrias" style="display: grid;
 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
@@ -16,9 +16,52 @@ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
 </div>
 {% endblock %}
 
-{% block nav-items %}
-<a href="/aspirante/inscripcion/" class="nav__link active">
-    <i class='bx bx-home-alt-2 nav__icon'></i>
-    <span class="nav__name">Inscripción</span>
+{% block header %}
+<div class="header__toggle">
+    <i class='bx bx-menu' id="header-toggle"></i>
+</div>
+
+<a href="/aspirante/inicio" class="personal">
+    <div class="personal__img">
+        <img src="{{ MEDIA_URL}}{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+    </div>
+    <span class="personal-name">{{aspirante.nombres}}</span>
 </a>
-{% endblock %}
+{% endblock header %}
+
+
+{% block nav %}
+<div>
+    <a href="/aspirante/inicio/" class="nav__logo">
+        <span class="nav__logo-name"><img src="{% static 'img/logo.png' %}" alt="Logo UFPS"
+                style="width: 23px; margin: 5px;">Aspirante</span>
+    </a>
+
+    <div class="personal-info">
+        <div class="personal__img">
+            <img src="/media/{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+        </div>
+        <span class="personal-name">{{aspirante.nombres}}</span>
+    </div>
+
+    <div class="nav__list">
+        <a href="/aspirante/inicio/" class="nav__link active">
+            <i class='bx bx-home-alt-2 nav__icon'></i>
+            <span class="nav__name">Inicio</span>
+        </a>
+        <a href="#" class="nav__link">
+            <i class='bx bxs-user-detail nav__icon'></i>
+            <span class="nav__name">Información</span>
+        </a>
+        <a href="/aspirante/inscripcion/" class="nav__link">
+            <iconify-icon icon="bx:calendar-edit" width="26"></iconify-icon>
+            <span class="nav__name">Inscripción</span>
+        </a>
+    </div>
+</div>
+<a href="/aspirante/logout/" class="nav__link cerrar">
+    <i class='bx bx-log-out nav__icon'></i>
+    <span class="nav__name">Cerrar sesión</span>
+</a>
+{% endblock nav %}
+    

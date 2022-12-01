@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Logout {% endblock %}
+{% block title %} Recuperar Contraseña {% endblock %}
 
 {% block bootstrap %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -12,7 +12,21 @@
 {% endblock %}
 
 {% block body %}
-<div>
-    <h1>gracias por usar vuelva pronto</h1>
+<div class="container w-75 bg-light mt-5 rounded shadow">
+    <div class="col bg-white p-5 rounded-end">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text py-2" style="text-align:center" >Logout de la cuenta</h3>
+                <p style="text-align:center">Has hecho logout de tu cuenta, dirigete a inicio para volver a iniciar sesion</p>
+                <form method="POST">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            {% block url-usuario %}{% endblock url-usuario %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'director',
     'general',
     'helpers',
-    'static',
-    'media'
 ]
 
 MIDDLEWARE = [

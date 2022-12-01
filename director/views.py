@@ -8,13 +8,12 @@ from general.models import Aspirante, Inscripcion
 #Getting data from the HTML and accepting the POST request
 
 def inicio(request):
-    return render(request, 'director/inicio.html')
+    return render(request, 'director/dashboard_d.html')
 
 def aspirante(request):
-    
     aspirantes = Aspirante.objects.all()
     context = ({'aspirantes': aspirantes })
-    return render(request, 'director/admitidos_d.html', context)
+    return render(request, 'director/aspirantes.html', context)
 
 def evaluar(request):
     inscripcion = Inscripcion.objects.all()

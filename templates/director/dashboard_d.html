@@ -1,10 +1,57 @@
 {% extends 'layouts/dashboard.html' %}
+{% load static %}
 
 {% block sidecontent %}
     <p>este el sidebar</p>
 {% endblock %}
 
 {% block dash-content %}
-    <h1> Hola :)</h1>   
+    <a href="/director/aspirantes/">Ver aspirantes</a>
 {% endblock %}
 
+
+{% block header %}
+<div class="header__toggle">
+    <i class='bx bx-menu' id="header-toggle"></i>
+</div>
+
+<a href="/director/inicio/" class="personal">
+    <span class="personal-name">{{director.nombres}}</span>
+</a>
+{% endblock %}
+
+{% block nav %}
+<div>
+    <a href="/director/inicio/" class="nav__logo">
+        <span class="nav__logo-name"><img src="{% static 'img/logo.png' %}" alt="Logo UFPS"
+                style="width: 23px; margin: 5px;">Director</span>
+    </a>
+
+    <div class="personal-info">
+        <div class="personal__img">
+            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144709.png" width="50" height="50" alt="Foto de perfil Aspirante">
+        </div>
+        <span class="personal-name">{{director.nombres}}</span>
+    </div>
+
+    <div class="nav__list">
+        <a href="/director/inicio/" class="nav__link active">
+            <i class='bx bx-home-alt-2 nav__icon'></i>
+            <span class="nav__name">Inicio</span>
+        </a>
+        <a href="/director/evaluar/" class="nav__link">
+            <i class='bx bxs-user-detail nav__icon'></i>
+            <span class="nav__name">Evaluar</span>
+        </a>
+        <a href="/director/inscripcion/" class="nav__link">
+            <iconify-icon icon="bx:search-alt"></iconify-icon>
+            <span class="nav__name">Admitidos</span>
+        </a>
+    </div>
+</div>
+<a href="/director/logout/" class="nav__link cerrar">
+    <i class='bx bx-log-out nav__icon'></i>
+    <span class="nav__name">Cerrar sesión</span>
+</a>
+{% endblock %}
+    

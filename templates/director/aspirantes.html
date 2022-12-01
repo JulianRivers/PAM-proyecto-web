@@ -1,0 +1,25 @@
+{% extends 'director/dashboard_d.html' %}
+{% load static %}
+
+{% block dash-content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Documento</th>
+        <th scope="col">Código</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for aspirante in aspirantes %}
+          <tr>
+            <td>{{ aspirante.nombres }}</td>
+            <td>{{ aspirante.apellidos }}</td>
+            <td>{{ aspirante.documento }}</td>
+            <td>{{ aspirante.codigo }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock dash-content %}
