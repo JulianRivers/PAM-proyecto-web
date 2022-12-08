@@ -66,7 +66,7 @@ ROOT_URLCONF = 'procesoAdmisionMaestria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['sources/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

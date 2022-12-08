@@ -14,8 +14,11 @@ PAM is a web application in which UFPS master's degree applicants can register a
 
 ## Functionality
 
-- Master's director
+- Master's applicant
   - Register an account as an applicant
+  - Login
+    - via email & password
+    - via Gmail
   - Resend an activation code
   - View master's degrees
   - Enroll in a master's degree
@@ -23,14 +26,24 @@ PAM is a web application in which UFPS master's degree applicants can register a
   - Change profile
   - Change email
   - Change password
+  - Reset password
+  - Logout
 - Master's director
+  - Login
+    - via email & password
+    - via Gmail
+  - See the master's degrees he directs
+  - Evaluate applicants
+  - Assign interview date and time
+  - Change profile
+  - Change email
+  - Change password
+  - Reset password
+  - Logout
 - Admin
   - Register master's degrees
-- Login
-  - via email & password
-  - via Gmail
-  - Logout
-  - Reset password
+  - Register master's director
+  - Assign directors to their respective master's degrees
 
 ## Installing
 
