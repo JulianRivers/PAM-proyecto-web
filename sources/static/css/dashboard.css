@@ -218,3 +218,8 @@ a{
     padding-left: calc(var(--nav-width) + 188px);
   }
 }
+.dash-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  margin-left: 165px;
+}
