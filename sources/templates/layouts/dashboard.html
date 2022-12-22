@@ -20,13 +20,44 @@
 {% block title %} Inicio {% endblock %}
 
 {% block body %}
-<header class="header" id="header">
+<div>
     {% block header %}{% endblock header %}
-</header>
+</div>
 
 <div class="l-navbar show" id="nav-bar">
     <nav class="nav">
-        {% block nav %}{% endblock nav %}
+        <div>
+            <a href="/aspirante/inicio/" class="nav__logo">
+                <span class="nav__logo-name"><img src="{% static 'img/logo.png' %}" alt="Logo UFPS"
+                        style="width: 23px; margin: 5px;">Aspirante</span>
+            </a>
+        
+            <div class="personal-info">
+                <div class="personal__img">
+                    <img src="/media/aspirantes/{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+                </div>
+                <span class="personal-name">{{aspirante.nombres}}</span>
+            </div>
+        
+            <div class="nav__list">
+                <a href="/aspirante/inicio/" class="nav__link active">
+                    <i class='bx bx-home-alt-2 nav__icon'></i>
+                    <span class="nav__name">Inicio</span>
+                </a>
+                <a href="/aspirante/editar_info/" class="nav__link">
+                    <i class='bx bxs-user-detail nav__icon'></i>
+                    <span class="nav__name">Información</span>
+                </a>
+                <a href="/aspirante/inscripcion/" class="nav__link">
+                    <iconify-icon icon="bx:calendar-edit" width="26"></iconify-icon>
+                    <span class="nav__name">Inscripción</span>
+                </a>
+            </div>
+        </div>
+        <a href="/aspirante/logout/" class="nav__link cerrar">
+            <i class='bx bx-log-out nav__icon'></i>
+            <span class="nav__name">Cerrar sesión</span>
+        </a>
     </nav>
 </div>
 

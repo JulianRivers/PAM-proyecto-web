@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from general.models import *
+from aspirante.forms import *
 
 # Create your views here.
 
@@ -82,3 +83,28 @@ def inscripcion_a(request):
         'maestrias': maestrias
     }
     return render(request, 'aspirante/inscripcion.html', context)
+
+def editar_info(request):
+    user = request.user
+    email = user.username
+    aspirante = Aspirante.objects.get(email=email)
+    context = {
+        'aspirante' : aspirante
+    }
+    if request.method == 'POST':
+        nombres = request.POST['nombres']
+        apellidos = request.POST['apellidos']
+        documento = request.POST['documento']
+        foto = request.FILES.get('foto')
+        
+        if nombres:
+            Aspirante.objects.filter(email=email).update(nombres=nombres)
+        if apellidos:
+            Aspirante.objects.filter(email=email).update(apellidos=apellidos)
+        if documento:
+            Aspirante.objects.filter(email=email).update(documento=documento)
+        if foto:
+            Aspirante.objects.filter(email=email).update(foto=foto)
+        else:
+            return redirect("aspirante:editar_info")
+    return render(request, 'aspirante/editar_informacion.html', context)

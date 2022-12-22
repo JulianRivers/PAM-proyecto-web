@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block dash-content %}
+<div class="container w-120 bg-light mt-3 p-2 rounded shadow">
 <div class="card-body">
     <div >
         {% if messages %}
@@ -14,121 +15,161 @@
             </div>
         {% endif %}
     </div>
-    {% block usuario %} Aspirante {% endblock %}
     <form name="inscripcion" method="POST" enctype="multipart/form-data" autocomplete="off">
         {% csrf_token %}
         <div>
-            <select class="form-select mt-3" aria-label="Default select example" name="id_maestria" id="id_maestria">
+            <label for="lFoto" class="mt-2">Selecciona una maestría*</label>
+            <select class="form-select mt-2" aria-label="Default select example" name="id_maestria" id="id_maestria">
                 {%for maestria in maestrias%}
                 <option selected value="{{maestria.codigo}}">{{maestria.nombre}}</option>
                 {%endfor%}
             </select>
         </div>
         <div>
-            <label for="lFoto">Foto(3x4)*</label>
-            <input type="file" class="mt-3" name="foto" id="foto">
+            <div class="row">
+                <label for="lFoto" class="col-form-label">Foto (3x4)*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="foto" id="foto">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lCedula">Fotocopia ampliada de cédula (frente y reverso)*</label>
-            <input type="file" class="mt-3" name="copia_documento" id="copia_documento">
+            <div class="row">
+                <label for="lCedula" class="col-form-label">Fotocopia ampliada de cédula (frente y reverso)*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="copia_documento" id="copia_documento">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lDiploma">Fotocopia de diploma de pregrado*</label>
-            <input type="file" class="mt-3 mb-3" name="diploma_pregrado" id="diploma_pregrado">
+            <div class="row">
+                <label for="lDiploma" class="col-form-label">Fotocopia de diploma de pregrado*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="diploma_pregrado" id="diploma_pregrado">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lNotas">Notas originales de pregrado o Acta de compromiso para entrega de notas (Graduado de
-                pregrado en la Universidad
-                Francisco de Paula Santander: no tendrá que hacer entrega del certificado de calificaciones según
-                acuerdo 044 de 2016).*</label>
-            <input type="file" class="mt-2" name="notas_pregrado" id="notas_pregrado">
+            <div class="row">
+                <label for="lNotas" class="col-form-label">Notas originales de pregrado o Acta de compromiso para entrega de notas (Graduado de
+                    pregrado en la Universidad
+                    Francisco de Paula Santander: no tendrá que hacer entrega del certificado de calificaciones según
+                    acuerdo 044 de 2016).*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="notas_pregrado" id="notas_pregrado">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="pago">Comprobante de pago de derechos de inscripción*</label>
-            <input type="file" class="mt-3" name="comprobante_pago" id="comprobante_pago">
+            <div class="row">
+                <label for="pago" class="col-form-label">Comprobante de pago de derechos de inscripción*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="comprobante_pago" id="comprobante_pago">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="hojaVida">Resumen de la hoja de vida*</label>
-            <input type="file" class="mt-3" name="resumen_cv" id="resumen_cv">
+            <div class="row">
+                <label for="hojaVida" class="col-form-label">Resumen de la hoja de vida*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="resumen_cv" id="resumen_cv">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="refUno">Carta de referencia académica #1*</label>
-            <input type="file" class="mt-3" name="referencia_uno" id="referencia_uno">
+            <div class="row">
+                <label for="refUno" class="col-form-label">Carta de referencia académica #1*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="referencia_uno" id="referencia_uno">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="refDos">Carta de referencia académica #2*</label>
-            <input type="file" class="mt-3" name="referencia_dos" id="referencia_dos">
+            <div class="row">
+                <label for="refDos" class="col-form-label">Carta de referencia académica #2*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="referencia_dos" id="referencia_dos">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lInscripcion">Descargar el siguiente formato de inscripción, diligenciarlo y cargarlo*</label>
-            <input type="file" class="mt-3" name="formato_inscripcion" id="formato_inscripcion">
+            <div class="row">
+                <label for="lInscripcion" class="col-form-label">Descargar el siguiente formato de inscripción, diligenciarlo y cargarlo*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="formato_inscripcion" id="formato_inscripcion">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lPasaporte">*</label>
-            <input type="file" class="mt-3" name="pasaporte_visa" id="pasaporte_visa">
+            <div class="row">
+                <label for="lPasaporte" class="col-form-label">*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="pasaporte_visa" id="pasaporte_visa">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lNotas">*</label>
-            <input type="file" class="mt-3" name="notas_apostilladas" id="notas_apostilladas">
+            <div class="row">
+                <label for="lNotas" class="col-form-label">*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="notas_apostilladas" id="notas_apostilladas">
+                </div>
+            </div>
         </div>
         <div>
-            <label for="lDiploma">*</label>
-            <input type="file" class="mt-3" name="diploma_apostillado" id="diploma_apostillado">
+            <div class="row">
+                <label for="lDiploma" class="col-form-label">*</label>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <input class="form-control" type="file" name="diploma_apostillado" id="diploma_apostillado">
+                </div>
+            </div>
         </div>
-
         <div class="col col-lg-12 mt-3">
             <button type="submit" class="btn btn-danger btn-lg w-100 my-1">Cargar inscripción</button>
         </div>
     </form>
 </div>
+</div>
+</div>
 {% endblock %}
 
 {% block header %}
-<div class="header__toggle">
-    <i class='bx bx-menu' id="header-toggle"></i>
-</div>
-
-<a href="/aspirante/inicio" class="personal">
-    <div class="personal__img">
-        <img src="{{ MEDIA_URL}}{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+<header class="header" id="header">
+    <div class="header__toggle">
+        <i class='bx bx-menu' id="header-toggle"></i>
     </div>
-    <span class="personal-name">{{aspirante.nombres}}</span>
-</a>
-{% endblock header %}
 
-
-{% block nav %}
-<div>
-    <a href="/aspirante/inicio/" class="nav__logo">
-        <span class="nav__logo-name"><img src="{% static 'img/logo.png' %}" alt="Logo UFPS"
-                style="width: 23px; margin: 5px;">Aspirante</span>
-    </a>
-
-    <div class="personal-info">
+    <a href="/aspirante/inicio" class="personal">
         <div class="personal__img">
-            <img src="/media/{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+            <img src="/media/aspirantes/{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
         </div>
         <span class="personal-name">{{aspirante.nombres}}</span>
-    </div>
+    </a>
+</header>
+{% endblock header %}
 
-    <div class="nav__list">
-        <a href="/aspirante/inicio/" class="nav__link active">
-            <i class='bx bx-home-alt-2 nav__icon'></i>
-            <span class="nav__name">Inicio</span>
-        </a>
-        <a href="#" class="nav__link">
-            <i class='bx bxs-user-detail nav__icon'></i>
-            <span class="nav__name">Información</span>
-        </a>
-        <a href="/aspirante/inscripcion/" class="nav__link">
-            <iconify-icon icon="bx:calendar-edit" width="26"></iconify-icon>
-            <span class="nav__name">Inscripción</span>
-        </a>
-    </div>
-</div>
-<a href="/aspirante/logout/" class="nav__link cerrar">
-    <i class='bx bx-log-out nav__icon'></i>
-    <span class="nav__name">Cerrar sesión</span>
-</a>
-{% endblock nav %}
     

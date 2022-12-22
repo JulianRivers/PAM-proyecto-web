@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from login.forms import *
 from general.models import *
-from general.models import Aspirante
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
