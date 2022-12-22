@@ -11,7 +11,7 @@ class Maestria(models.Model):
     codigo = models.CharField("Código", primary_key=True, max_length=10)
     nombre = models.CharField("Nombre", max_length=100)
     descripcion = models.CharField("Descripción", max_length=255)
-    imagen = models.CharField("imagen", max_length=50)
+    imagen = models.CharField("imagen", max_length=500)
     plazo_inicio = models.DateField("plazo inicio")
     plazo_final = models.DateField("plazo final")
     url_prueba = models.CharField("url prueba", max_length=250)
