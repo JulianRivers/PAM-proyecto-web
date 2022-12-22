@@ -1,0 +1,133 @@
+{% extends 'layouts/dashboard.html' %}
+{% load static %}
+
+{% block dash-content %}
+<div class="card-body">
+    <div >
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        {{message}}
+                    </div>
+                {% endfor %}   
+            </div>
+        {% endif %}
+    </div>
+    {% block usuario %} Aspirante {% endblock %}
+    <form name="inscripcion" method="POST" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+        <div>
+            <select class="form-select mt-3" aria-label="Default select example" name="id_maestria" id="id_maestria">
+                {%for maestria in maestrias%}
+                <option selected value="{{maestria.codigo}}">{{maestria.nombre}}</option>
+                {%endfor%}
+            </select>
+        </div>
+        <div>
+            <label for="lFoto">Foto(3x4)*</label>
+            <input type="file" class="mt-3" name="foto" id="foto">
+        </div>
+        <div>
+            <label for="lCedula">Fotocopia ampliada de cédula (frente y reverso)*</label>
+            <input type="file" class="mt-3" name="copia_documento" id="copia_documento">
+        </div>
+        <div>
+            <label for="lDiploma">Fotocopia de diploma de pregrado*</label>
+            <input type="file" class="mt-3 mb-3" name="diploma_pregrado" id="diploma_pregrado">
+        </div>
+        <div>
+            <label for="lNotas">Notas originales de pregrado o Acta de compromiso para entrega de notas (Graduado de
+                pregrado en la Universidad
+                Francisco de Paula Santander: no tendrá que hacer entrega del certificado de calificaciones según
+                acuerdo 044 de 2016).*</label>
+            <input type="file" class="mt-2" name="notas_pregrado" id="notas_pregrado">
+        </div>
+        <div>
+            <label for="pago">Comprobante de pago de derechos de inscripción*</label>
+            <input type="file" class="mt-3" name="comprobante_pago" id="comprobante_pago">
+        </div>
+        <div>
+            <label for="hojaVida">Resumen de la hoja de vida*</label>
+            <input type="file" class="mt-3" name="resumen_cv" id="resumen_cv">
+        </div>
+        <div>
+            <label for="refUno">Carta de referencia académica #1*</label>
+            <input type="file" class="mt-3" name="referencia_uno" id="referencia_uno">
+        </div>
+        <div>
+            <label for="refDos">Carta de referencia académica #2*</label>
+            <input type="file" class="mt-3" name="referencia_dos" id="referencia_dos">
+        </div>
+        <div>
+            <label for="lInscripcion">Descargar el siguiente formato de inscripción, diligenciarlo y cargarlo*</label>
+            <input type="file" class="mt-3" name="formato_inscripcion" id="formato_inscripcion">
+        </div>
+        <div>
+            <label for="lPasaporte">*</label>
+            <input type="file" class="mt-3" name="pasaporte_visa" id="pasaporte_visa">
+        </div>
+        <div>
+            <label for="lNotas">*</label>
+            <input type="file" class="mt-3" name="notas_apostilladas" id="notas_apostilladas">
+        </div>
+        <div>
+            <label for="lDiploma">*</label>
+            <input type="file" class="mt-3" name="diploma_apostillado" id="diploma_apostillado">
+        </div>
+
+        <div class="col col-lg-12 mt-3">
+            <button type="submit" class="btn btn-danger btn-lg w-100 my-1">Cargar inscripción</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block header %}
+<div class="header__toggle">
+    <i class='bx bx-menu' id="header-toggle"></i>
+</div>
+
+<a href="/aspirante/inicio" class="personal">
+    <div class="personal__img">
+        <img src="{{ MEDIA_URL}}{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+    </div>
+    <span class="personal-name">{{aspirante.nombres}}</span>
+</a>
+{% endblock header %}
+
+
+{% block nav %}
+<div>
+    <a href="/aspirante/inicio/" class="nav__logo">
+        <span class="nav__logo-name"><img src="{% static 'img/logo.png' %}" alt="Logo UFPS"
+                style="width: 23px; margin: 5px;">Aspirante</span>
+    </a>
+
+    <div class="personal-info">
+        <div class="personal__img">
+            <img src="/media/{{aspirante.foto}}" width="50" height="50" alt="Foto de perfil Aspirante">
+        </div>
+        <span class="personal-name">{{aspirante.nombres}}</span>
+    </div>
+
+    <div class="nav__list">
+        <a href="/aspirante/inicio/" class="nav__link active">
+            <i class='bx bx-home-alt-2 nav__icon'></i>
+            <span class="nav__name">Inicio</span>
+        </a>
+        <a href="#" class="nav__link">
+            <i class='bx bxs-user-detail nav__icon'></i>
+            <span class="nav__name">Información</span>
+        </a>
+        <a href="/aspirante/inscripcion/" class="nav__link">
+            <iconify-icon icon="bx:calendar-edit" width="26"></iconify-icon>
+            <span class="nav__name">Inscripción</span>
+        </a>
+    </div>
+</div>
+<a href="/aspirante/logout/" class="nav__link cerrar">
+    <i class='bx bx-log-out nav__icon'></i>
+    <span class="nav__name">Cerrar sesión</span>
+</a>
+{% endblock nav %}

@@ -26,8 +26,15 @@ body {
 .container {
     margin-bottom: 3%;
 }
-
 .dash-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    margin-left: 165px;
 }
+.wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 100px 100px 100px;
+    background-color: #fff;
+    color: #444;
+  }

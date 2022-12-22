@@ -62,7 +62,7 @@
     <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
         <div class="card-body">
             <h5 class="card-title">Link de la prueba</h5>
-            El día de la prueba podrá realizarla 
+            El día de la prueba podrá realizarla
             <a href="{{inscripcion.url_prueba}}">aquí</a>
         </div>
     </div>
@@ -70,15 +70,40 @@
     <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
         <div class="card-body">
             <h5 class="card-title">Link de la entrevista</h5>
-            El día de la entrevista  podrá realizarla 
+            El día de la entrevista podrá realizarla
             <a href="{{inscripcion.url_entrevista}}">aquí</a>
         </div>
     </div>
 </div>
 {% else %}
-<div class="card" style="width: 80vmax;padding: 20px; margin-top: 10px;">
-    <h2>No está inscrito en esta maestria</h2>
-    <span>aquí info de la maestria y redirect a inscripción</span>
+<div class="card wrapper" style="display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{maestria.codigo}} {{maestria.nombre}}</h4>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <p>{{maestria.descripcion}}</p>
+        </div>
+    </div>
+    <div><img src="{{maestria.imagen}}" alt="foto maestria" width="500"></div>
+    ‎   <!--esto es pa centrar la fila XD -->
+    <div class="card" style="width: 18rem;padding: 20px; margin-top: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Fecha de inscripcion</h5>
+            {% if maestria.plazo_inicio is None %}
+            En este momento no se encuentran habilitadas las inscripciones, Esperar la próxima fecha.
+            {% else %}
+            Las inscripciones estarán habilitadas desde {{maestria.plazo_inicio}} hasta {{maestria.plazo_final}}
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <a href="/aspirante/inscripcion/" class="btn btn-primary btn-danger" role="button">Inscribirme</a>
+    </div>
+
 </div>
 {% endif %}
 
