@@ -59,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'procesoAdmisionMaestria.urls'
@@ -86,13 +87,18 @@ WSGI_APPLICATION = 'procesoAdmisionMaestria.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+DATABASE_URL='postgres://tcwyrmazghlnra:ab79682351dada0724a6bc3633176bb253f791537d1e0aecb89d763e1dc8e635@ec2-34-231-63-30.compute-1.amazonaws.com:5432/d85t34muljij51'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd85t34muljij51',
+        'USER': 'tcwyrmazghlnra',
+        'PASSWORD': 'ab79682351dada0724a6bc3633176bb253f791537d1e0aecb89d763e1dc8e635',
+        'HOST': 'ec2-34-231-63-30.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -134,12 +140,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-else:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'static/css/'),]
+STATICFILES_DIRS = (
+   os.path.join(BASE_DIR, 'static/'),
+   os.path.join(BASE_DIR, 'static/css/'),
+   os.path.join(BASE_DIR, 'static/img/'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 #forms bootstrap
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 

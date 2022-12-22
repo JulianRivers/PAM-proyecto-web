@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #b87878;
+}
+
+.bg {
+    background-image: url("../img/mati.3dc2fc29ca94.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.parra {
+    background-image: url(https://images.unsplash.com/photo-1637684666451-423047d6bf5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80);
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    margin-bottom: 3%;
+}
+
+.dash-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
